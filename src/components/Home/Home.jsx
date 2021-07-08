@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import LeftSide from '../LeftSide/LeftSide';
@@ -8,12 +10,13 @@ import RightSide from '../RightSide/RightSide';
 const Home = props => {
     return (
         <Container>
+            {!props.user && <Redirect to='/' />}
             <Section>
                 <h5>
                     <a href="">Hiring in a hurry? - </a>
                 </h5>
                 <p>
-                    Find a talented pros in record time with Upwork and keep business moving.
+                    &nbsp;Find a talented pros in record time with Upwork and keep business moving.
                 </p>
             </Section>
             <Layout>
@@ -82,4 +85,10 @@ const Layout = styled.div`
     }
 `;
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        user: state.userState.user
+    }
+}
+
+export default connect(mapStateToProps)(Home);
