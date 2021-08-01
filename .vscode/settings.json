@@ -1,0 +1,8 @@
+{
+    "editor.multiCursorModifier": "ctrlCmd",
+    "javascript.validate.enable": false,
+    "cSpell.enableFiletypes": [
+        "javascriptreact",
+        "jsx-tags"
+    ]
+}

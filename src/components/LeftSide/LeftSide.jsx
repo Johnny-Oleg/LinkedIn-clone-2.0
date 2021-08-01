@@ -2,15 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-const LeftSide = props => {
+const LeftSide = ({ user }) => {
     return (
         <Container>
             <ArtCard>
                 <UserInfo>
                     <CardBackground />
                     <a>
-                        <Photo />
-                        <Link>Welcome, {props.user ? props.user.displayName : 'there'}!</Link>
+                        {user && user.photoURL ? 
+                            <UserPhoto src={user.photoURL}/> :
+                            <Photo />
+                        }
+                        <Link>Welcome, {user ? user.displayName : 'there'}!</Link>
                     </a>
                     <a>
                         <AddPhotoText>Add a photo</AddPhotoText>
@@ -93,6 +96,17 @@ const Photo = styled.div`
     background-repeat: no-repeat;
     background-size: 60%;
     background-clip: content-box;
+    box-sizing: border-box;
+    background-color: #fff;
+    border: 2px solid white;
+    border-radius: 50%;
+    box-shadow: none;
+`;
+
+const UserPhoto = styled.img`
+    width: 72px;
+    height: 72px;
+    margin: -38px auto 12px;
     box-sizing: border-box;
     background-color: #fff;
     border: 2px solid white;

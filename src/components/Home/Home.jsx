@@ -7,10 +7,10 @@ import LeftSide from '../LeftSide/LeftSide';
 import Main from '../Main/Main';
 import RightSide from '../RightSide/RightSide';
 
-const Home = props => {
+const Home = ({ user }) => {
     return (
         <Container>
-            {!props.user && <Redirect to='/' />}
+            {!user && <Redirect to='/' />}
             <Section>
                 <h5>
                     <a href="">Hiring in a hurry? - </a>
@@ -31,12 +31,6 @@ const Home = props => {
 const Container = styled.div`
     max-width: 100%;
     padding-top: 52px;
-`;
-
-const Content = styled.div`
-    max-width: 1128px;
-    margin-right: auto;
-    margin-left: auto;
 `;
 
 const Section = styled.section`

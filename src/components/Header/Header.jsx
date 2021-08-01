@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { signOutAPI } from '../../actions';
 
-const Header = props => {
+const Header = ({ user, signOut }) => {
     return (
         <Container>
             <Content>
@@ -26,37 +26,37 @@ const Header = props => {
                         <NavList className="active">
                             <a href="#">
                                 <img src="/images/nav-home.svg" alt="" />
+                                <span>Home</span>
                             </a>
-                            <span>Home</span>
                         </NavList>
                         <NavList>
                             <a href="#">
                                 <img src="/images/nav-network.svg" alt="" />
+                                <span>My Network</span>
                             </a>
-                            <span>My Network</span>
                         </NavList>
                         <NavList>
                             <a href="#">
                                 <img src="/images/nav-jobs.svg" alt="" />
+                                <span>Jobs</span>
                             </a>
-                            <span>Jobs</span>
                         </NavList>
                         <NavList>
                             <a href="#">
                                 <img src="/images/nav-messaging.svg" alt="" />
+                                <span>Messaging</span>
                             </a>
-                            <span>Messaging</span>
                         </NavList>
                         <NavList>
                             <a href="#">
                                 <img src="/images/nav-notifications.svg" alt="" />
+                                <span>Notifications</span>
                             </a>
-                            <span>Notifications</span>
                         </NavList>
                         <User>
                             <a href="">
-                                {props?.user?.photoURL ? 
-                                    <img src={props.user.photoURL} alt="" /> :  
+                                {user && user.photoURL ? 
+                                    <img src={user.photoURL} alt="" /> :  
                                     <img src="/images/user.svg" alt="" />
                                 }
                                 <span>
@@ -64,7 +64,7 @@ const Header = props => {
                                     <img src="/images/down-icon.svg" alt="" />
                                 </span>
                             </a>
-                            <SignOut onClick={() => props.signOut()}>
+                            <SignOut onClick={() => signOut()}>
                                 <a href="">Sign Out</a>
                             </SignOut>
                         </User>
@@ -165,15 +165,16 @@ const NavListWrap = styled.ul`
     display: flex;
     flex-wrap: nowrap;
     list-style-type: none;
+    padding-top: 5px;
 
     .active {
         span::after {
-            content: ' ';
+            content: '';
             width: 100%;
             position: absolute;
             bottom: 0;
             left: 0;
-            border-bottom: 2px solid var(--white, #fff); // TODO
+            border-bottom: 2px solid var(--white, #fff);
             border-color: rgba(0, 0, 0, 0.9);
             transform: scaleX(1);
             transition: transform 0.2s ease-in-out;
@@ -234,11 +235,6 @@ const SignOut = styled.div`
 `;
 
 const User = styled(NavList)`
-    /* a > svg {
-        width: 24px;
-        border-radius: 50%;
-    } */
-
     a > img {
         width: 24px;
         height: 24px;

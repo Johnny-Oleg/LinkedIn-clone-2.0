@@ -5,10 +5,10 @@ import styled from 'styled-components';
 
 import { signInAPI } from '../../actions';
 
-const LogIn = props => {
+const LogIn = ({ user, signIn }) => {
     return (
         <Container>
-            {props.user && <Redirect to='/home/' />}
+            {user && <Redirect to='/home/' />}
             <Nav>
                 <a href="/">
                     <img src="/images/login-logo.svg" alt="" />
@@ -24,7 +24,7 @@ const LogIn = props => {
                     <img src="/images/login-hero.svg" alt="" />
                 </Hero>
                 <Form>
-                    <Google onClick={() => props.signIn()}>
+                    <Google onClick={() => signIn()}>
                         <img src="/images/google.svg" alt="" />
                         Sign in with Google
                     </Google>
@@ -96,8 +96,6 @@ const Section = styled.section`
     max-width: 1128px;
     width: 100%;
     min-height: 700px;
-    /* padding-top: 40px;
-    padding-bottom: 138px; */
     margin: auto;
     padding: 60px 0;
     display: flex;
@@ -137,7 +135,6 @@ const Hero = styled.div`
         position: absolute;
         right: -150px;
         bottom: -2px;
-        /* z-index: -1; */
 
         @media (max-width: 768px) {
             width: initial;
@@ -167,7 +164,6 @@ const Google = styled.button`
     border-radius: 28px;
     font-size: 20px;
     color: rgba(0, 0, 0, 0.6);
-    /* box-shadow: inset 0 0 0 1px rgb(0 0 0 / 60%), inset 0 0 0 2px rgb(0 0 0 / 0%), inset 0 0 0 1px rgb(0 0 0 0 / 0); */
     box-shadow: inset 0 0 0 1px rgb(0 0 0 / 60%), inset 0 0 0 2px rgb(0 0 0 / 0%);
     background-color: #fff;
     transition-duration: 167ms;
